@@ -201,17 +201,20 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: open an issue before a
 large change, keep the rules short and testable, and never make the file longer
 without removing something.
 
-## Before you publish your own fork
+## Using this in your own project
 
-Repository URLs are placeholders so the template stays fork-neutral:
+Take the whole file or just the parts that apply — copy it in, then work through
+the [adaptation checklist](docs/adapting.md):
 
-```bash
-grep -rn '__REPO_SLUG__' .   # find them
-```
+1. Replace the `<your source dirs>` placeholders with your real layout
+2. Put your concrete test commands in §5
+3. Add your domain constraints — the rules only you could have written
+4. Cut anything that does not apply; aim for under 200 lines
 
-Replace with your org, and fill in the Discussion link in
-`.github/ISSUE_TEMPLATE/config.yml`.
+`AGENTS.md` is MIT-licensed. Copy it, adapt it, delete it, ship it inside a
+proprietary codebase — no attribution required. If it helped, a link back is
+appreciated.
 
 ## License
 
-[MIT](LICENSE) © SDDLite contributors
+[MIT](LICENSE) © npaneri

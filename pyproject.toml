@@ -32,9 +32,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/__REPO_SLUG__/SDDLite"
-Issues = "https://github.com/__REPO_SLUG__/SDDLite/issues"
-Changelog = "https://github.com/__REPO_SLUG__/SDDLite/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/npaneri/SDDLite"
+Issues = "https://github.com/npaneri/SDDLite/issues"
+Changelog = "https://github.com/npaneri/SDDLite/blob/main/CHANGELOG.md"
 
 # No runtime dependencies and no Python source: this repo is Markdown plus one
 # shell script. Runtime requirements for the Spec Kit CLI live in

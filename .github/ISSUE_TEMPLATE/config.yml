@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Question or discussion
-    url: https://github.com/__REPO_SLUG__/SDDLite/discussions
+    url: https://github.com/npaneri/SDDLite/discussions
     about: Ask how to use or adapt SDDLite
   - name: Spec Kit itself
     url: https://github.com/github/spec-kit

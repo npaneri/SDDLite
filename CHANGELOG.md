@@ -37,5 +37,5 @@ Initial release.
 - CI workflow, issue and pull-request templates, Dependabot config
 - MIT license, contributing guide, code of conduct
 
-[Unreleased]: https://github.com/__REPO_SLUG__/SDDLite/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/__REPO_SLUG__/SDDLite/releases/tag/v0.1.0
+[Unreleased]: https://github.com/npaneri/SDDLite/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/npaneri/SDDLite/releases/tag/v0.1.0
