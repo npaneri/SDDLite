@@ -1,0 +1,20 @@
+# SDDLite runtime requirements
+#
+# Only direct dependencies are listed. Transitive deps (click, typer, rich,
+# readchar, pathspec, json5, packaging) are resolved by the package manager.
+#
+#   pip install -r requirements.txt
+#   # or, to keep the CLI isolated from your system Python:
+#   uv tool install specify-cli
+#
+# Requires Python 3.11 or newer (specify-cli declares requires-python >=3.11).
+
+# The Spec Kit CLI. Provides `specify init`, `specify integration`,
+# `specify workflow`, and generates the .specify/ machinery plus the agent
+# command files this repo's AGENTS.md refers to.
+specify-cli>=1.0.13
+
+# Imported directly by .specify/scripts/python/common.py (workflow and
+# extension YAML parsing), so it must be importable by whatever interpreter
+# runs those scripts -- not merely present as a transitive dependency.
+PyYAML>=6.0.3

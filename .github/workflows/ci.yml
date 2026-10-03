@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Lint and validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check shell script syntax
+        run: bash -n scripts/check_sdd.sh
+
+      - name: Lint shell script
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq shellcheck
+          shellcheck scripts/check_sdd.sh
+
+      - name: Check agent instructions are present
+        run: |
+          test -f AGENTS.md || { echo "AGENTS.md is missing"; exit 1; }
+          test -f README.md   || { echo "README.md is missing"; exit 1; }
+          test -f LICENSE     || { echo "LICENSE is missing"; exit 1; }
+
+      - name: No absolute local paths or personal identifiers
+        run: |
+          # A template that leaks the author's machine paths is not a template.
+          # Character classes keep this pattern from matching its own source line.
+          PATTERN='(/Us[e]rs/|/hom[e]/[a-z]|C:[\\]Us[e]rs[\\])'
+          if grep -rInE "$PATTERN" --exclude-dir=.git . ; then
+            echo "::error::Found absolute local paths -- these break for every other user"
+            exit 1
+          fi
+          echo "no absolute local paths found"
+
+  requirements:
+    name: Requirements are installable
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Spec Kit CLI is runnable
+        run: specify version
+
+  smoke:
+    name: Validator smoke tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validator rejects a project with code but no spec
+        run: |
+          set -euo pipefail
+          tmp=$(mktemp -d)
+          mkdir -p "$tmp/.specify/memory" "$tmp/src"
+          printf 'def f():\n    return 1\n' > "$tmp/src/app.py"
+          chmod +x scripts/check_sdd.sh
+          if ./scripts/check_sdd.sh "$tmp"; then
+            echo "::error::Validator passed a project that has code and no spec"
+            exit 1
+          fi
+          echo "correctly failed"
+
+      - name: Validator accepts a well-formed project
+        run: |
+          set -euo pipefail
+          tmp=$(mktemp -d)
+          mkdir -p "$tmp/.specify/memory" "$tmp/specs/001-demo"
+          printf '# Constitution\n' > "$tmp/.specify/memory/constitution.md"
+          cat > "$tmp/specs/001-demo/spec.md" <<'EOF'
+          # Feature Specification: Demo
+          ## User Scenarios & Testing
+          ## Requirements
+          ## Success Criteria
+          EOF
+          chmod +x scripts/check_sdd.sh
+          ./scripts/check_sdd.sh "$tmp"

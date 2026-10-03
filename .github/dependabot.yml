@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    labels: [dependencies]
+    groups:
+      actions:
+        patterns: ['*']
+
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: monthly
+    labels: [dependencies]
+    # Only the CLI and its YAML dependency; nothing else is pinned here.
+    open-pull-requests-limit: 5

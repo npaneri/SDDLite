@@ -1,0 +1,41 @@
+[project]
+name = "sddlite"
+version = "0.1.0"
+description = "Opinionated agent rules for Spec-Driven Development, as a drop-in AGENTS.md"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+keywords = [
+    "spec-driven-development",
+    "agents",
+    "agencies",
+    "github-spec-kit",
+    "ai",
+    "llm",
+    "prompting",
+    "workflow",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Shell",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+# Deliberately empty: SDDLite is a documents-and-scripts repo, not a library.
+# Nothing is imported from it. Runtime requirements live in requirements.txt.
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/__REPO_SLUG__/SDDLite"
+Issues = "https://github.com/__REPO_SLUG__/SDDLite/issues"
+Changelog = "https://github.com/__REPO_SLUG__/SDDLite/blob/main/CHANGELOG.md"
+
+# No runtime dependencies and no Python source: this repo is Markdown plus one
+# shell script. Runtime requirements for the Spec Kit CLI live in
+# requirements.txt.

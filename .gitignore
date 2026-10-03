@@ -1,0 +1,41 @@
+# --- Secrets ----------------------------------------------------------------
+# .env.example (blank values) IS committed. Real .env files never are.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials/
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+*.egg-info/
+dist/
+build/
+
+# --- Node -------------------------------------------------------------------
+node_modules/
+coverage/
+*.tsbuildinfo
+
+# --- Spec Kit local state ---------------------------------------------------
+# Feature pointers are per-checkout state, not shared project content.
+.specify/feature.json
+.specify/extensions/*/local-config.yml
+
+# --- Editors & OS -----------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+.idea/
+.vscode/
+*.swp
