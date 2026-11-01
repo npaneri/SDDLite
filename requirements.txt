@@ -12,7 +12,7 @@
 # The Spec Kit CLI. Provides `specify init`, `specify integration`,
 # `specify workflow`, and generates the .specify/ machinery plus the agent
 # command files this repo's AGENTS.md refers to.
-specify-cli>=1.0.13
+specify-cli>=1.2.5
 
 # Imported directly by .specify/scripts/python/common.py (workflow and
 # extension YAML parsing), so it must be importable by whatever interpreter
